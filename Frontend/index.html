@@ -2,12 +2,34 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Lista de ToDos</title>
+    <title>To Do App</title>
+    <link rel="stylesheet" href="/style-sheets/todo-list.css">
 </head>
 <body>
-    <h1>Minha Lista de Tarefas</h1>
-    <ul id="todo-list"></ul>
+    <header>
+        <h1>To-do App</h1>
+        <h2>Manage your day your way</h2>
+    </header>
 
-    <script src="/script/app.js"></script>
+    <main>
+        <div>
+            <h1>To do List</h1>
+            <ul id="todo-list">
+            </ul>
+        </div>
+        <button type="button" id="createButton">Create</button>
+        <button type="button">Delete</button>
+        <button type="button">Update</button>
+
+        <form id="todo-form">
+            <input type="text" name="title" id="title" placeholder="task title" required>
+            <input type="text" name="description" id="description" placeholder="task description">
+            <button type="submit">submit</button>
+        </form>
+    </main>
+
+    
+
+    <script type="module" src="/script/app.js"></script>
 </body>
 </html>

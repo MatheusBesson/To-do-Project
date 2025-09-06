@@ -1,6 +1,7 @@
 package com.mathdev.to_do.controller;
 
 
+import com.mathdev.to_do.DTO.StatusDTO;
 import com.mathdev.to_do.DTO.ToDoRequestDTO;
 import com.mathdev.to_do.DTO.ToDoResponseDTO;
 import com.mathdev.to_do.model.ToDo;
@@ -21,7 +22,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 @RestController
-@RequestMapping("/to-do-list") // -------- finish endpoint
+@RequestMapping("/todos") // -------- finish endpoint
 @CrossOrigin(origins = "*") // change this for frontend connection
 public class ToDoController {
 
@@ -35,25 +36,41 @@ public class ToDoController {
     }
 
     @PostMapping
-    public void saveToDo(@RequestBody ToDoRequestDTO toDoPostData) {
-        ToDo toDoCreated = new ToDo(toDoPostData);
-        repository.save(toDoCreated);
+    public ToDoRequestDTO saveToDo(@RequestBody ToDoRequestDTO toDoPostData) {
+        ToDo todo = new ToDo(toDoPostData);
+        repository.save(todo);
+
+        return new ToDoRequestDTO(todo.getTitle(), todo.getDescription(), todo.isStatus(), todo.getCreationDate(),todo.getLastUpdatedDate());
     }
 
     @PutMapping("/{id}")
-    public void updateToDo(@RequestBody ToDoRequestDTO updateToDo, @PathVariable Long id) {
+    public ToDoResponseDTO updateToDo(@RequestBody ToDoRequestDTO updateToDo, @PathVariable Long id) {
         LocalDateTime newDate = updateToDo.creationDate();
 
-        // checking if this obejct already exists in DB
-        ToDo existingToDo = repository.findById(id).orElseThrow(() -> new NullPointerException("This task doesn't exists"));
+        // checking if this object already exists in DB
+        ToDo todo = repository.findById(id).orElseThrow(() -> new NullPointerException("This task doesn't exists"));
 
-        existingToDo.setTitle(updateToDo.title());
-        existingToDo.setDescription(updateToDo.description());
-        existingToDo.setStatus(updateToDo.status());
-        existingToDo.setCreationDate(newDate);
+        todo.setTitle(updateToDo.title());
+        todo.setDescription(updateToDo.description());
+        todo.setStatus(updateToDo.status());
+        todo.setCreationDate(newDate);
 
-        repository.save(existingToDo);
+        repository.save(todo);
+
+        return new ToDoResponseDTO(todo.getId(), todo.getTitle(), todo.getDescription(), todo.isStatus(), todo.getCreationDate(),todo.getLastUpdatedDate());
     }
+
+    @PutMapping("/{id}/status")
+    public ToDoResponseDTO updateStatus(@RequestBody StatusDTO statusDTO, @PathVariable Long id) {
+        ToDo todo = repository.findById(id).orElseThrow(() -> new NullPointerException("This task doesn't exists"));
+
+        todo.setStatus(statusDTO.Status());
+        repository.save(todo);
+
+        return new ToDoResponseDTO(todo.getId(), todo.getTitle(), todo.getDescription(), todo.isStatus(), todo.getCreationDate(),todo.getLastUpdatedDate());
+    }
+
+
 
    @DeleteMapping("/{id}")
     public void deleteToDo(@PathVariable Long id) {
