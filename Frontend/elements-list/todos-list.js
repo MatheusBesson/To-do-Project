@@ -1,3 +1,6 @@
+
+export let selectedTodoId = null;
+
 export function displayTodos(todos) {
 
     const ul = document.getElementById("todo-list");
@@ -8,16 +11,30 @@ export function displayTodos(todos) {
 
         const divTodos = document.createElement("div");
         divTodos.className = 'todos';
+        divTodos.dataset.id = todo.id;
 
         const title = document.createElement("p");
         const description = document.createElement("p");
         var status = document.createElement("p");
-        const changeStatusButton = document.createElement("button");
+        
 
         title.textContent = todo.title;
         description.textContent = todo.description;
+        status.textContent = todo.status ? '✅' : '⏳';
 
-        status.textContent = todo.status ? 'completed' : 'To do';
+        // clique na div seleciona o ToDo
+        divTodos.addEventListener('click', () => {
+            selectedTodoId  = divTodos.dataset.id;
+            document.querySelectorAll('.todos').forEach(d => d.style.background = '');
+            divTodos.style.background = '#cc6767ff';
+            console.log('ToDo selected', selectedTodoId);
+        })
+
+        // opcional: destacar a div selecionada
+            
+            
+
+        
 
         changeStatusButton.id = 'changeStatusButton';
         changeStatusButton.innerText = 'Change status';
@@ -27,7 +44,7 @@ export function displayTodos(todos) {
         divTodos.appendChild(title);
         divTodos.appendChild(description);
         divTodos.appendChild(status);
-        divTodos.appendChild(changeStatusButton);
+        
 
         ul.appendChild(divTodos);
     });

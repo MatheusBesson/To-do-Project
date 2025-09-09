@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -59,12 +60,15 @@ public class ToDoController {
 
         return new ToDoResponseDTO(todo.getId(), todo.getTitle(), todo.getDescription(), todo.isStatus(), todo.getCreationDate(),todo.getLastUpdatedDate());
     }
-
-    @PutMapping("/{id}/status")
-    public ToDoResponseDTO updateStatus(@RequestBody StatusDTO statusDTO, @PathVariable Long id) {
+    // @RequestBody StatusDTO statusDTO
+    @PatchMapping("/{id}")
+    public ToDoResponseDTO updateStatus(@PathVariable Long id) {
         ToDo todo = repository.findById(id).orElseThrow(() -> new NullPointerException("This task doesn't exists"));
-
-        todo.setStatus(statusDTO.Status());
+        if(todo.isStatus()) {
+            todo.setStatus(false);
+        } else if(!todo.isStatus()) {
+            todo.setStatus(true);
+        }
         repository.save(todo);
 
         return new ToDoResponseDTO(todo.getId(), todo.getTitle(), todo.getDescription(), todo.isStatus(), todo.getCreationDate(),todo.getLastUpdatedDate());
