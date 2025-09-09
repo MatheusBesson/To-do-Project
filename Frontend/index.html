@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>To Do App</title>
     <link rel="stylesheet" href="/style-sheets/todo-list.css">
 </head>
+
 <body>
     <header>
         <h1>To-do App</h1>
@@ -19,18 +21,29 @@
         </div>
         <button type="button" id="createButton">Create</button>
         <button type="button" id="deleteButton">Delete</button>
-        <button type="button">Update</button>
+        <button type="button" id="updateButton">Update</button>
         <button id="changeStatusButton">Change status</button>
 
-        <form id="todo-form">
-            <input type="text" name="title" id="title" placeholder="task title" required>
-            <input type="text" name="description" id="description" placeholder="task description">
-            <button type="submit">submit</button>
-        </form>
+        <div>
+            <form id="todo-form">
+                <input type="text" name="title" id="title" placeholder="task title" required>
+                <input type="text" name="description" id="description" placeholder="task description">
+                <button type="submit">submit</button>
+            </form>
+        </div>
+=================================================================
+        <div>
+            <form id="todo-form-update">
+                <input type="text" name="title-update" id="title-update" placeholder="task title" required>
+                <input type="text" name="description-update" id="description-update" placeholder="task description">
+                <button type="submit">submit</button>
+            </form>
+        </div>
     </main>
 
-    
+
 
     <script type="module" src="./script/app.js"></script>
 </body>
+
 </html>

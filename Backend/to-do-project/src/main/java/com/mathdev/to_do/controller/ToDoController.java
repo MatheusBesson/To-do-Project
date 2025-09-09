@@ -44,24 +44,29 @@ public class ToDoController {
         return new ToDoRequestDTO(todo.getTitle(), todo.getDescription(), todo.isStatus(), todo.getCreationDate(),todo.getLastUpdatedDate());
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public ToDoResponseDTO updateToDo(@RequestBody ToDoRequestDTO updateToDo, @PathVariable Long id) {
         LocalDateTime newDate = updateToDo.creationDate();
 
         // checking if this object already exists in DB
         ToDo todo = repository.findById(id).orElseThrow(() -> new NullPointerException("This task doesn't exists"));
 
-        todo.setTitle(updateToDo.title());
-        todo.setDescription(updateToDo.description());
-        todo.setStatus(updateToDo.status());
-        todo.setCreationDate(newDate);
+        if(updateToDo.title() != null && !updateToDo.title().isBlank()) {
+            todo.setTitle(updateToDo.title());
+        }
+        if(updateToDo.description() != null && !updateToDo.description().isBlank()) {
+            todo.setDescription(updateToDo.description());
+        }
+
+       // todo.setStatus(updateToDo.status());
+        todo.setLastUpdatedDate(newDate);
 
         repository.save(todo);
 
         return new ToDoResponseDTO(todo.getId(), todo.getTitle(), todo.getDescription(), todo.isStatus(), todo.getCreationDate(),todo.getLastUpdatedDate());
     }
-    // @RequestBody StatusDTO statusDTO
-    @PatchMapping("/{id}")
+
+    @PatchMapping("/{id}/status")
     public ToDoResponseDTO updateStatus(@PathVariable Long id) {
         ToDo todo = repository.findById(id).orElseThrow(() -> new NullPointerException("This task doesn't exists"));
         if(todo.isStatus()) {

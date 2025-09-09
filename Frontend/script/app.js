@@ -11,6 +11,7 @@ function startApp() {
     createToDo();
     deleteToDo();
     changeStatus();
+    updateToDo();
 
 
 }
@@ -45,36 +46,89 @@ function createToDo() {
             });
 
             if (!response.ok) {
-                throw new Error("Erro ao criar ToDo");
+                throw new Error("Erro creating ToDo");
             }
 
         } catch (error) {
-            console.error("Erro na requisição:", error);
+            console.error("Error request:", error);
         }
         fetchTodos();
-    })
-
+    });
 }
 
-function deleteToDo(id) { // pensar em uma maneira de pegar o id sem o usuario digitar
+function deleteToDo() {
 
     const button = document.getElementById('deleteButton');
-    id = 15;
 
     button.addEventListener('click', async () => {
         try {
-            const response = await fetch(`${API_URL}/${id}`, {
+            const response = await fetch(`${API_URL}/${selectedTodoId}`, {
                 method: 'DELETE'
             });
 
             if (!response.ok) {
                 console.log('ERROR when deleting task');
+                return;
             }
+
+            const deleted = await response.json();
+            console.log("Task deleted!", deleted);
+            fetchTodos();
+            selectedTodoId = null; // limpa a seleção
+
         } catch (error) {
-            console.error('Connectio ERROR');
+            console.error('Connection ERROR');
         }
         fetchTodos();
     })
+}
+
+export function updateToDo() {
+    const buttonModal = document.getElementById('updateButton');
+    const form = document.getElementById('todo-form-update');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        console.log("Clicou no botão!")
+
+        const title = document.getElementById('title-update').value;
+        const description = document.getElementById('description-update').value;
+
+        if (!selectedTodoId) {
+            alert("Select a task first!");
+            return;
+        }
+
+        try {
+            
+            const response = await fetch(`${API_URL}/${selectedTodoId}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ title, description })
+
+            });
+
+            if (!response.ok) {
+                throw new Error('Error updating toDo');
+            }
+            
+            const updated = await response.json();
+            console.log("Updated ToDo:", updated);
+
+            fetchTodos();
+
+        } catch (error) {
+            console.error('Error updating request:', error);
+        }
+    });
+
+    buttonModal.addEventListener('click', async () => {
+        // todo
+    });
+
 }
 
 export function changeStatus() {
@@ -89,7 +143,7 @@ export function changeStatus() {
         }
 
         try {
-            const response = await fetch(`${API_URL}/${selectedTodoId}`, {
+            const response = await fetch(`${API_URL}/${selectedTodoId}/status`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'

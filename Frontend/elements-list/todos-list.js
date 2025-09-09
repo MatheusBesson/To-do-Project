@@ -30,12 +30,6 @@ export function displayTodos(todos) {
             console.log('ToDo selected', selectedTodoId);
         })
 
-        // opcional: destacar a div selecionada
-            
-            
-
-        
-
         changeStatusButton.id = 'changeStatusButton';
         changeStatusButton.innerText = 'Change status';
 
