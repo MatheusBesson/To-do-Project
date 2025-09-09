@@ -1,0 +1,14 @@
+#container-create {
+    display: none; /* escondido por padrão */
+    position: fixed; /* fica sobre toda a tela */
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 50%;
+    background-color: rgba(0,0,0,0.5); /* fundo semi-transparente */
+    border: 3px solid black;
+    
+    display: flex; /* para centralizar o conteúdo */
+    justify-content: center; /* horizontal */
+    align-items: center;     /* vertical */
+}

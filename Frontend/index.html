@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>To Do App</title>
     <link rel="stylesheet" href="/style-sheets/todo-list.css">
+    <link rel="stylesheet" href="/style-sheets/modal-create.css">
 </head>
 
 <body>
@@ -24,15 +25,16 @@
         <button type="button" id="updateButton">Update</button>
         <button id="changeStatusButton">Change status</button>
 
-        <div>
+        <div id="container-create">
             <form id="todo-form">
                 <input type="text" name="title" id="title" placeholder="task title" required>
                 <input type="text" name="description" id="description" placeholder="task description">
                 <button type="submit">submit</button>
+                <button type="button" id="close-modal-create-button">Close</button>
             </form>
         </div>
 =================================================================
-        <div>
+        <div id="conteiner-update">
             <form id="todo-form-update">
                 <input type="text" name="title-update" id="title-update" placeholder="task title" required>
                 <input type="text" name="description-update" id="description-update" placeholder="task description">

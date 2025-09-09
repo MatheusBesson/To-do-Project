@@ -2,6 +2,7 @@
 import { API_URL } from "./config/config.js";
 import { fetchTodos } from "./Connection/api.js";
 import { selectedTodoId } from "../elements-list/todos-list.js";
+import { modalCreateConfig } from "../modal/modal-create.js";
 
 
 
@@ -23,6 +24,8 @@ startApp();
 
 
 function createToDo() {
+
+    modalCreateConfig();
 
     const form = document.getElementById('todo-form');
 
@@ -101,7 +104,7 @@ export function updateToDo() {
         }
 
         try {
-            
+
             const response = await fetch(`${API_URL}/${selectedTodoId}`, {
                 method: 'PATCH',
                 headers: {
@@ -114,7 +117,7 @@ export function updateToDo() {
             if (!response.ok) {
                 throw new Error('Error updating toDo');
             }
-            
+
             const updated = await response.json();
             console.log("Updated ToDo:", updated);
 

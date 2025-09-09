@@ -1,3 +1,10 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+
 .todos {
     border: 1px solid black;
     border-radius: 10px;
