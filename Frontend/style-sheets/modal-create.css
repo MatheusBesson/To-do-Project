@@ -1,14 +1,94 @@
-#container-create {
-    display: none; /* escondido por padrão */
-    position: fixed; /* fica sobre toda a tela */
+#container-create-transparent {
+    display: none;
+    position: fixed;
     top: 0;
     left: 0;
-    width: 50%;
-    height: 50%;
-    background-color: rgba(0,0,0,0.5); /* fundo semi-transparente */
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+
+
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
     border: 3px solid black;
+}
+
+div#container-create {
+    display: grid;
+    height: 70vh;
+    width: 90vw;
+    background-color: white;
+
+    justify-content: center;
+    align-items: flex-start;
+    border-radius: 30px;
+}
+
+div#container-create h2 {
+    text-align: center;
+    padding-top: 60px;
+    font-size: 2em;
+}
+
+form#todo-form {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.field label {
+    font-size: 1.5em;
+    margin-top: 30px;
+}
+
+.field input {
+    height: 35px;
+    font-size: 1em;
+    padding-left: 5px;
+    border-radius: 4px;
+    border: none;
+    box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.301);
+}
+
+div#container-create textarea {
+    border-radius: 4px;
+    resize: none;
+    font-size: 1em;
+    padding-top: 5px;
+    padding-left: 5px;
+    border: none;
+    box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.301);
     
-    display: flex; /* para centralizar o conteúdo */
-    justify-content: center; /* horizontal */
-    align-items: center;     /* vertical */
+}
+
+form#todo-form button#submit-button-create-form {
+    margin-top: 20px;
+    height: 50px;
+    width: 380px;
+    font-size: 1.8em;
+}
+
+div#close-modal-create-button-div {
+    display: flex;
+    margin: auto;
+    padding-bottom: 10%;
+}
+
+div#close-modal-create-button-div button{
+    height: 40px;
+    width: 200px;
+    font-size: 1.3em;
+}
+
+.modal-button {
+    border: none;
+    border-radius: 20px;
+    box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.500);
 }

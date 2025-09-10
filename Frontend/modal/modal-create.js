@@ -1,6 +1,6 @@
 export function modalCreateConfig() {
 
-    const div = document.getElementById('container-create');
+    const div = document.getElementById('container-create-transparent');
     div.style.display = 'none';
     const button = document.getElementById('createButton');
 

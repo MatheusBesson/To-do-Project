@@ -25,15 +25,26 @@
         <button type="button" id="updateButton">Update</button>
         <button id="changeStatusButton">Change status</button>
 
-        <div id="container-create">
-            <form id="todo-form">
-                <input type="text" name="title" id="title" placeholder="task title" required>
-                <input type="text" name="description" id="description" placeholder="task description">
-                <button type="submit">submit</button>
-                <button type="button" id="close-modal-create-button">Close</button>
-            </form>
+        <div id="container-create-transparent">
+            <div id="container-create">
+                <h2>Create new task </h2>
+                <form id="todo-form">
+                    <div class="field">
+                        <label for="title">Task name </label>
+                        <input type="text" name="title" id="title" placeholder="task title" required>
+                    </div>
+                    <div class="field">
+                        <label for="description">Task description </label>
+                        <textarea name="description" id="description" placeholder="task description" rows="8"></textarea>
+                    </div>
+                    <button type="submit" id="submit-button-create-form" class="modal-button">submit</button>
+                </form>
+                <div id="close-modal-create-button-div">
+                    <button type="button" id="close-modal-create-button" class="modal-button">Close</button>
+                </div>
+            </div>
         </div>
-=================================================================
+
         <div id="conteiner-update">
             <form id="todo-form-update">
                 <input type="text" name="title-update" id="title-update" placeholder="task title" required>
