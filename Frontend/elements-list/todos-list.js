@@ -1,11 +1,11 @@
+import { getSelectedTodoId, setSelectedTodoId } from "../script/config/config.js";
 
-export let selectedTodoId = null;
 
 export function displayTodos(todos) {
 
     const ul = document.getElementById("todo-list");
 
-    ul.innerHTML = ""; // limpa lista antes de adicionar
+    ul.innerHTML = ""; 
 
     todos.forEach(todo => {
 
@@ -24,10 +24,19 @@ export function displayTodos(todos) {
 
         // clique na div seleciona o ToDo
         divTodos.addEventListener('click', () => {
-            selectedTodoId  = divTodos.dataset.id;
+
+            if(getSelectedTodoId() == divTodos.dataset.id) {
+                setSelectedTodoId(null);
+                divTodos.style.background = 'white'
+                return;
+            }
+
+            setSelectedTodoId(divTodos.dataset.id);
+
             document.querySelectorAll('.todos').forEach(d => d.style.background = '');
+
             divTodos.style.background = '#cc6767ff';
-            console.log('ToDo selected', selectedTodoId);
+            console.log('ToDo selected', getSelectedTodoId());
         })
 
         changeStatusButton.id = 'changeStatusButton';

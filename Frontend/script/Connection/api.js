@@ -6,6 +6,7 @@ export async function fetchTodos() {
 
     try {
         const response = await fetch(API_URL); // faz a requisição GET
+        
         if (!response.ok) throw new Error("Erro ao buscar ToDos");
 
         const todos = await response.json(); // transforma em JSON
@@ -16,6 +17,4 @@ export async function fetchTodos() {
     } catch (error) {
         console.error(error);
     }
-    // Executa ao carregar a página
-   // fetchTodos();
 }

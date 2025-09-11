@@ -1,8 +1,13 @@
 
-import { API_URL } from "./config/config.js";
+import { API_URL, getSelectedTodoId, setSelectedTodoId } from "./config/config.js";
 import { fetchTodos } from "./Connection/api.js";
-import { selectedTodoId } from "../elements-list/todos-list.js";
+
 import { modalCreateConfig } from "../modal/modal-create.js";
+
+import { modalUpdateConfig } from "../modal/modalUpdate.js";
+import { modalDeleteConfig } from "../modal/modal-delete.js";
+
+
 
 
 
@@ -72,31 +77,66 @@ function deleteToDo() {
 
     const button = document.getElementById('deleteButton');
 
-    button.addEventListener('click', async () => {
-        try {
-            const response = await fetch(`${API_URL}/${selectedTodoId}`, {
-                method: 'DELETE'
-            });
+    const div = document.getElementById('container-delete-trasparent');
 
-            if (!response.ok) {
-                console.log('ERROR when deleting task');
-                return;
+    div.style.display = 'none';
+
+    button.addEventListener('click', async () => {
+
+        if (!getSelectedTodoId()) {
+            alert("Select a task first!");
+            return;
+        }
+
+        div.style.display = 'flex';
+
+        let answer = await modalDeleteConfig();
+
+        if (!answer) {
+            div.style.display = 'none';
+            setSelectedTodoId(null);
+            return;
+        }
+
+        if (answer) {
+            try {
+                const response = await fetch(`${API_URL}/${getSelectedTodoId()}`, {
+                    method: 'DELETE'
+                });
+
+                if (!response.ok) {
+                    console.log('ERROR when deleting task');
+                    return;
+                }
+
+                if (response.status === 204) {
+                    console.log("Task deleted successfully (no content returned)");
+                } else {
+                    const deleted = await response.json();
+                    console.log("Task deleted!", deleted);
+                }
+
+
+            } catch (error) {
+                console.error('ERROR', error);
             }
 
-            const deleted = await response.json();
-            console.log("Task deleted!", deleted);
             fetchTodos();
-            selectedTodoId = null; // limpa a seleção
-
-        } catch (error) {
-            console.error('Connection ERROR');
+            div.style.display = 'none';
+            setSelectedTodoId(null);
+            
         }
-        fetchTodos();
-    })
+
+    });
 }
 
 export function updateToDo() {
-    const buttonModal = document.getElementById('updateButton');
+
+    modalUpdateConfig();
+
+
+    const div = document.getElementById('container-update-transparent');
+
     const form = document.getElementById('todo-form-update');
 
     form.addEventListener('submit', async (e) => {
@@ -104,17 +144,17 @@ export function updateToDo() {
 
         console.log("Clicou no botão!")
 
-        const title = document.getElementById('title-update').value;
-        const description = document.getElementById('description-update').value;
+        let title = document.getElementById('title-update').value;
+        let description = document.getElementById('description-update').value;
 
-        if (!selectedTodoId) {
+        if (!getSelectedTodoId()) {
             alert("Select a task first!");
             return;
         }
 
         try {
 
-            const response = await fetch(`${API_URL}/${selectedTodoId}`, {
+            const response = await fetch(`${API_URL}/${getSelectedTodoId()}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'
@@ -131,14 +171,17 @@ export function updateToDo() {
             console.log("Updated ToDo:", updated);
 
             fetchTodos();
+            title = '';
+            description = '';
+            div.style.display = 'none';
+
+
 
         } catch (error) {
             console.error('Error updating request:', error);
         }
-    });
 
-    buttonModal.addEventListener('click', async () => {
-        // todo
+        setSelectedTodoId(null);
     });
 
 }
@@ -149,13 +192,13 @@ export function changeStatus() {
 
     button.addEventListener('click', async () => {
 
-        if (!selectedTodoId) {
+        if (!getSelectedTodoId()) {
             alert("First select a task.");
             return;
         }
 
         try {
-            const response = await fetch(`${API_URL}/${selectedTodoId}/status`, {
+            const response = await fetch(`${API_URL}/${getSelectedTodoId()}/status`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'
@@ -168,7 +211,7 @@ export function changeStatus() {
                 const updated = await response.json();
                 console.log("Status updated!", updated);
                 fetchTodos();
-                selectedTodoId = null; // limpa a seleção
+                setSelectedTodoId(null); // limpa a seleção
             }
 
         } catch (error) {

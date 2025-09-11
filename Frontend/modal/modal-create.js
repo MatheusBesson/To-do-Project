@@ -9,11 +9,6 @@ export function modalCreateConfig() {
     const title = document.getElementById('title');
     const description = document.getElementById('description');
 
-    closeButton.addEventListener('click', () => {
-        div.style.display = 'none';
-        title.value = '';
-        description.value = '';
-    });
 
     button.addEventListener('click', () => {
 
@@ -23,4 +18,10 @@ export function modalCreateConfig() {
             div.style.display = 'none';
         }
     })
+
+    closeButton.addEventListener('click', () => {
+        div.style.display = 'none';
+        title.value = '';
+        description.value = '';
+    });
 }

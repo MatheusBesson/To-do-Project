@@ -1,4 +1,4 @@
-#container-create-transparent {
+#container-update-transparent {
     display: none;
     position: fixed;
     top: 0;
@@ -16,9 +16,7 @@
     transition: opacity 0.5 ease-in-out;
 }
 
-
-
-div#container-create {
+div#container-update {
     display: flex;
     flex-direction: column;
     height: 70vh;
@@ -36,7 +34,7 @@ div#container-create {
     transition: all 0.2s ease-in-out;
 }
 
-div#container-create h2 {
+div#container-update h2 {
     text-align: center;
     padding-top: 50px;
     padding-bottom: 30px;
@@ -52,34 +50,32 @@ div#container-create h2 {
     color: white;
 }
 
-div#container-create h2:hover {
+div#container-update h2:hover {
     color: #283C3A;
 }
 
-
-form#todo-form {
+form#todo-form-update {
     display: flex;
     flex-direction: column;
     width: 80%;
     margin: auto;
 }
 
-
-.field {
+.field-update {
     display: flex;
     flex-direction: column;
     gap: 4px;
 
 }
 
-.field label {
+.field-update label {
     font-size: 1.5em;
     margin-top: 30px;
     margin-bottom: 3px;
     color: rgba(0, 0, 0, 0.712);
 }
 
-.field input {
+.field-update input {
     height: 35px;
     font-size: 1em;
     padding-left: 8px;
@@ -88,16 +84,13 @@ form#todo-form {
     box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.301);
 }
 
-
-
-.field input,
-#todo-form textarea {
+.field-update input,
+#todo-form-update textarea {
     width: 100%;
-    border-radius: 15px;
 
 }
 
-div#container-create textarea {
+div#container-update textarea {
     border-radius: 4px;
     resize: none;
     font-size: 1em;
@@ -110,7 +103,7 @@ div#container-create textarea {
 
 }
 
-form#todo-form button#submit-button-create-form {
+form#todo-form-update button#submit-button-update-form {
 
     height: 45px;
     width: 280px;
@@ -122,17 +115,17 @@ form#todo-form button#submit-button-create-form {
     transition: transform 0.5 ease;
 }
 
-form#todo-form button#submit-button-create-form:hover {
+form#todo-form-update button#submit-button-update-form:hover {
     transform: scale(1.05);
 }
 
-div#close-modal-create-button-div {
+div#close-modal-update-button-div {
     display: flex;
     margin: auto;
     padding-bottom: 40px;
 }
 
-div#close-modal-create-button-div button {
+div#close-modal-update-button-div button {
     height: 40px;
     width: 200px;
     font-size: 1.3em;
@@ -140,11 +133,11 @@ div#close-modal-create-button-div button {
     transition: transform 0.5 ease;
 }
 
-div#close-modal-create-button-div button:hover {
+div#close-modal-update-button-div button:hover {
     transform: scale(1.05);
 }
 
-.modal-button {
+.modal-button-update {
     border: none;
     border-radius: 20px;
     box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.500);
@@ -152,19 +145,20 @@ div#close-modal-create-button-div button:hover {
     color: rgba(0, 0, 0, 0.712);
 }
 
+
 /*=========================== Next Scale ================================ */
 @media (min-width: 768px) {
 
-    div#container-create {
+    div#container-update {
         height: 72vh;
     }
 
 
-    div#container-create h2 {
+    div#container-update h2 {
         font-size: 2.5em;
     }
 
-    .field label {
+    .field-update label {
         margin: auto;
         margin-top: 30px;
         margin-bottom: 8px;
@@ -172,51 +166,49 @@ div#close-modal-create-button-div button:hover {
 
     }
 
-    form#todo-form button#submit-button-create-form {
+    form#todo-form-update button#submit-button-update-form {
         margin-bottom: 10px;
         font-size: 2em;
 
         width: 320px;
     }
 
-    div#close-modal-create-button-div button {
+    div#close-modal-update-button-div button {
         font-size: 1.5em;
     }
 }
 
-
 /*=========================== Next Scale ================================ */
 @media (min-width: 1024px) {
 
-    div#container-create {
+    div#container-update {
         max-width: 1000px;
     }
 
-    .field label {
+    .field-update label {
         font-size: 1.9em;
     }
 
-    .field input {
+    .field-update input {
         max-width: 800px;
         margin: auto;
     }
 
-    .field textarea {
+    .field-update textarea {
         max-width: 800px;
         margin: auto;
     }
 
-    form#todo-form button#submit-button-create-form {
+    form#todo-form-update button#submit-button-update-form {
 
         width: 350px;
     }
 
 }
 
-
 /*=========================== Next Scale ================================ */
 @media (min-width: 1440px) {
-    div#container-create {
+    div#container-update {
 
         margin: auto;
     }
