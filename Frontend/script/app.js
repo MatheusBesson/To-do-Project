@@ -32,8 +32,13 @@ function createToDo() {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const title = document.getElementById("title").value;
-        const description = document.getElementById("description").value;
+        const titleValue = document.getElementById("title").value;
+        const descriptionValue = document.getElementById("description").value;
+
+        const title = document.getElementById("title");
+        const description = document.getElementById("description");
+
+        const div = document.getElementById('container-create-transparent');
 
         try {
             const response = await fetch(API_URL, {
@@ -42,8 +47,8 @@ function createToDo() {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    title: title,
-                    description: description,
+                    title: titleValue,
+                    description: descriptionValue,
                     status: false
                 })
             });
@@ -55,7 +60,11 @@ function createToDo() {
         } catch (error) {
             console.error("Error request:", error);
         }
+
+        title.value = '';
+        description.value = '';
         fetchTodos();
+        div.style.display = 'none';
     });
 }
 
