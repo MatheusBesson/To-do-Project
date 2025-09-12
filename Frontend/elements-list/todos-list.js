@@ -16,8 +16,17 @@ export function displayTodos(todos) {
         const divStatus = document.createElement('div');
 
         divStatus.id = 'divStatus';
+
+        const divInputs = document.createElement('div');
+
+        divInputs.id = 'divInputs';
+
         const title = document.createElement("p");
+        title.id = 'titleTodo';
+
         const description = document.createElement("p");
+        description.id = 'descriptionTodo' ;
+
         var status = document.createElement("p");
         
 
@@ -25,6 +34,12 @@ export function displayTodos(todos) {
         description.textContent = todo.description;
         status.textContent = todo.status ? '✅' : '⏳';
 
+        if(status.textContent == '✅') {
+            title.style.textDecoration = "line-through";
+            description.style.textDecoration = "line-through";
+            
+            divTodos.style.transition = "opacity 0.3s ease";
+            divTodos.style.opacity = 0.5;
         }
 
         // clique na div seleciona o ToDo
