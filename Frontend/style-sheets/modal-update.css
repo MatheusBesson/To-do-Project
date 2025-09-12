@@ -20,6 +20,7 @@ div#container-update {
     display: flex;
     flex-direction: column;
     height: 70vh;
+    min-height: 600px;
     width: 90vw;
     background-color: white;
 
@@ -32,11 +33,13 @@ div#container-update {
     overflow: hidden;
 
     transition: all 0.2s ease-in-out;
+
+    overflow-y: auto;
 }
 
 div#container-update h2 {
     text-align: center;
-    padding-top: 50px;
+    padding-top: 30px;
     padding-bottom: 30px;
     font-size: 2em;
 
@@ -87,6 +90,7 @@ form#todo-form-update {
 .field-update input,
 #todo-form-update textarea {
     width: 100%;
+    border-radius: 15px;
 
 }
 
@@ -106,7 +110,8 @@ div#container-update textarea {
 form#todo-form-update button#submit-button-update-form {
 
     height: 45px;
-    width: 280px;
+    max-width: 280px;
+    min-width: 240px;
     font-size: 1.8em;
 
     margin: auto;
@@ -117,6 +122,8 @@ form#todo-form-update button#submit-button-update-form {
 
 form#todo-form-update button#submit-button-update-form:hover {
     transform: scale(1.05);
+
+    cursor: pointer;
 }
 
 div#close-modal-update-button-div {
@@ -135,6 +142,8 @@ div#close-modal-update-button-div button {
 
 div#close-modal-update-button-div button:hover {
     transform: scale(1.05);
+
+    cursor: pointer;
 }
 
 .modal-button-update {

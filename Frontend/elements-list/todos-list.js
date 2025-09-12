@@ -13,6 +13,9 @@ export function displayTodos(todos) {
         divTodos.className = 'todos';
         divTodos.dataset.id = todo.id;
 
+        const divStatus = document.createElement('div');
+
+        divStatus.id = 'divStatus';
         const title = document.createElement("p");
         const description = document.createElement("p");
         var status = document.createElement("p");
@@ -22,12 +25,15 @@ export function displayTodos(todos) {
         description.textContent = todo.description;
         status.textContent = todo.status ? '✅' : '⏳';
 
+        }
+
         // clique na div seleciona o ToDo
         divTodos.addEventListener('click', () => {
 
             if(getSelectedTodoId() == divTodos.dataset.id) {
                 setSelectedTodoId(null);
-                divTodos.style.background = 'white'
+
+                divTodos.style.background = '#4a565e0e'
                 return;
             }
 
@@ -35,7 +41,7 @@ export function displayTodos(todos) {
 
             document.querySelectorAll('.todos').forEach(d => d.style.background = '');
 
-            divTodos.style.background = '#cc6767ff';
+            divTodos.style.background = '#2b2b2bff';
             console.log('ToDo selected', getSelectedTodoId());
         })
 
@@ -44,9 +50,13 @@ export function displayTodos(todos) {
 
 
 
-        divTodos.appendChild(title);
-        divTodos.appendChild(description);
-        divTodos.appendChild(status);
+
+        divTodos.appendChild(divInputs);
+        divInputs.appendChild(title);
+        divInputs.appendChild(description);
+
+        divTodos.appendChild(divStatus);
+        divStatus.appendChild(status);
         
 
         ul.appendChild(divTodos);

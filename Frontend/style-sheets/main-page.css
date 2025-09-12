@@ -1,0 +1,180 @@
+body {
+    background: #0D0D0D;
+}
+
+
+body header {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+
+    align-items: center;
+
+    color: white;
+
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2.3em;
+    font-weight: bolder;
+
+    color: #DBF227;
+    ;
+
+}
+
+header h2 {
+    font-size: 1.4em;
+
+    font-weight: lighter;
+
+    margin-top: 10px;
+
+    color: azure;
+
+    text-shadow: 1px solid black;
+}
+
+
+main {
+    display: flex;
+
+    flex-direction: column;
+    margin: auto;
+
+    max-width: 1000px;
+
+}
+
+main button#createButton {
+    height: 40px;
+
+    font-size: 1.3em;
+    font-weight: bold;
+
+    background-color: #DBF227;
+
+    border-radius: 30px;
+
+    transition: transform 0.5 ease;
+}
+
+main button#createButton:hover {
+    transform: scale(1.05);
+
+    background-color: #fbff00;
+
+    cursor: pointer;
+
+}
+
+main button#createButton i {
+    font-size: 1em;
+}
+
+
+div#container-buttons {
+    display: flex;
+    flex-direction: row;
+
+    padding-top: 10px;
+
+    gap: 30px;
+
+    justify-content: center;
+}
+
+.btn-crud {
+
+    height: 40px;
+    width: 130px;
+
+    border-radius: 30px;
+
+    border: none;
+
+    font-size: 1em;
+    font-weight: bold;
+
+    transition: transform 0.5 ease;
+
+}
+
+.btn-crud:hover {
+    transform: scale(1.05);
+
+    cursor: pointer;
+}
+
+button#deleteButton {
+    color: white;
+    background-color: rgba(255, 0, 0, 0.733);
+}
+
+button#updateButton {
+    background-color: azure;
+}
+
+button#changeStatusButton {
+    background-color: #affa25;
+}
+
+
+ul#todo-list {
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+.todos {
+
+    display: flex;
+    flex-direction: row;
+
+    color: white;
+
+    background-color: #4a565e0e;
+
+    border: 1px solid rgba(240, 255, 255, 0.13);
+    border-radius: 10px;
+    padding: 25px;
+
+}
+
+
+#divInputs {
+    display: flex;
+    flex-direction: column;
+
+    width: 90%;
+}
+
+
+#divStatus {
+    display: flex;
+    width: 10%;
+    justify-content: flex-end;
+
+    font-size: 1.5em;
+}
+
+#titleTodo {
+    font-size: 1.3em;
+    padding-bottom: 8px;
+
+    color: #AFFA25;
+}
+
+#descriptionTodo {
+    font-size: 1em;
+    color: azure;
+}

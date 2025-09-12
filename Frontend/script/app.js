@@ -94,7 +94,6 @@ function deleteToDo() {
 
         if (!answer) {
             div.style.display = 'none';
-            setSelectedTodoId(null);
             return;
         }
 
