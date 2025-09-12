@@ -1,0 +1,63 @@
+footer {
+    display: flex;
+    flex-direction: column;
+    
+    background-color: #262626;
+    height: 200px;
+
+    padding: 20px;
+
+}
+
+footer #info {
+    display: flex;
+    flex-direction: column;
+    margin: auto auto 20px auto;
+
+    color: #AFFA25;
+}
+
+a {
+    text-decoration: none;
+    color: azure;
+
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+div#socials {
+    margin: 1px auto auto auto;
+    text-align: center;
+    color: #AFFA25;
+}
+
+p#email-sender {
+    padding-bottom: 3px;
+}
+
+p#contacts-p {
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+#socials span {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    
+}
+
+#socials span a {
+    font-size: 1.8em;
+}
+
+
+
+#socials span a i:hover {
+    transform: scale(1.3);
+    transition: transform 0.2s ease;
+
+    cursor: pointer;
+}

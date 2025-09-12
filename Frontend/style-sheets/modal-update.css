@@ -49,13 +49,10 @@ div#container-update h2 {
     width: 100%;
 
     background-color: #01E5D4;
-    background: linear-gradient(to bottom, #01E5D4, rgb(75, 139, 139));
-    color: white;
-}
-
-div#container-update h2:hover {
+    background: linear-gradient(to bottom, #DBF227, #affa25);
     color: #283C3A;
 }
+
 
 form#todo-form-update {
     display: flex;
